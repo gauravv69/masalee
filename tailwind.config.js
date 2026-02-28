@@ -4,18 +4,15 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Inter Tight"', 'Inter', 'system-ui', 'sans-serif'],
-      },
-      boxShadow: {
-        card: '0 20px 60px rgba(15, 23, 42, 0.18)',
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       colors: {
         brand: {
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
+          dark: '#0D110F',
+          green: '#133524',
+          orange: '#FF5C00',
+          sand: '#F3F1EC',
+          stone: '#E5E2DB'
         },
       },
     },

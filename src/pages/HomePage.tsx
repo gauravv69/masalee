@@ -1,5 +1,6 @@
 import { MainLayout } from "../components/layout/MainLayout";
 import { Hero } from "../components/sections/Hero";
+import { Features } from "../components/sections/Features";
 import { Categories } from "../components/sections/Categories";
 import { FeaturedProducts } from "../components/sections/FeaturedProducts";
 import { BrandStory } from "../components/sections/BrandStory";
@@ -9,6 +10,7 @@ export default function HomePage() {
   return (
     <MainLayout>
       <Hero />
+      <Features />
       <Categories />
       <FeaturedProducts />
       <BrandStory />

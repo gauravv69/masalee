@@ -1,10 +1,14 @@
+import { Flame } from "lucide-react";
+
 export function Footer() {
   return (
     <footer className="bg-neutral-900 text-white py-16">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4">Masalee 🌶️</h3>
+            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              Masalee <Flame className="w-6 h-6 text-amber-500" />
+            </h3>
             <p className="text-neutral-400 leading-relaxed">
               Authentic Indian spices delivered to your doorstep. Where freshness meets tradition.
             </p>
