@@ -1,4 +1,6 @@
 import { ArrowRight, ShoppingBag, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 export function Hero() {
   const heroProducts = [
@@ -25,52 +27,95 @@ export function Hero() {
     }
   ];
 
+  // Animation Variants
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50, damping: 12 } }
+  };
+
+  const carouselVariants: Variants = {
+    hidden: { opacity: 0, x: 50 },
+    show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 40, damping: 15, delay: 0.8 } }
+  };
+
   return (
     <section className="relative w-full bg-[#0A0A0A] text-white min-h-[90vh] md:min-h-screen flex items-center pt-32 pb-16 overflow-hidden mx-auto">
       
       {/* Hyper-Aesthetic Dark Glow Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+        className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
+      >
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-[#FF5C00]/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-0 right-1/4 w-[800px] h-[400px] bg-[#FF5C00]/10 rounded-full blur-[200px]" />
-      </div>
+      </motion.div>
 
-      <div className="relative z-10 w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center px-4 md:px-12">
+      <div className="relative z-10 w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center px-4 md:px-12 xl:px-16">
         
         {/* Left Side: Hyper-Trendy Typography */}
-        <div className="lg:col-span-5 flex flex-col justify-center space-y-8 pr-0 lg:pr-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+          className="lg:col-span-5 flex flex-col justify-center space-y-8 pr-0 lg:pr-8"
+        >
           
-          <div className="inline-flex items-center gap-3 border border-white/10 px-4 py-1.5 rounded-full w-fit bg-white/5 backdrop-blur-md">
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-3 border border-white/10 px-4 py-1.5 rounded-full w-fit bg-white/5 backdrop-blur-md">
             <Sparkles className="w-3.5 h-3.5 text-[#FF5C00]" />
             <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/80">
               The Genesis Collection
             </span>
-          </div>
+          </motion.div>
 
-          <h1 className="text-6xl sm:text-7xl md:text-7xl lg:text-[5.5rem] font-sans font-black leading-[0.95] tracking-tighter">
+          <motion.h1 variants={itemVariants} className="text-6xl sm:text-7xl md:text-7xl lg:text-[5.5rem] font-sans font-black leading-[0.95] tracking-tighter">
             Where <br/>
             Freshness <br/>
             <span className="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-[#FF5C00] to-amber-500 pr-4 drop-shadow-[0_0_20px_rgba(255,92,0,0.5)]">
               Meets Tradition.
             </span>
-          </h1>
+          </motion.h1>
 
-          <p className="text-lg md:text-xl text-white/50 font-medium leading-relaxed max-w-sm">
+          <motion.p variants={itemVariants} className="text-lg md:text-xl text-white/50 font-medium leading-relaxed max-w-sm">
             Farm-fresh, authentic, and intensely aromatic. Sourced directly from generational growers.
-          </p>
+          </motion.p>
 
-          <button className="bg-white text-black px-8 py-5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:bg-[#FF5C00] hover:text-white transition-all duration-300 w-fit flex items-center gap-4 shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,92,0,0.4)] hover:scale-105 group">
-            Explore Store <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
+          <motion.div variants={itemVariants}>
+            <button className="bg-white text-black px-8 py-5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:bg-[#FF5C00] hover:text-white transition-all duration-300 w-fit flex items-center gap-4 shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,92,0,0.4)] hover:scale-105 group">
+              Explore Store <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </motion.div>
+        </motion.div>
 
         {/* Right Side: Ultimate Sexy GenZ Card Container */}
-        <div className="lg:col-span-7 relative w-full flex gap-6 overflow-x-auto pb-12 pt-8 snap-x snap-mandatory hide-scrollbars no-scrollbar select-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <motion.div 
+          variants={carouselVariants}
+          initial="hidden"
+          animate="show"
+          className="lg:col-span-7 relative w-full flex gap-6 overflow-x-auto pb-12 pt-8 snap-x snap-mandatory hide-scrollbars no-scrollbar select-none" 
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           
           {/* Edge Fade */}
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-20 pointer-events-none hidden lg:block"></div>
 
-          {heroProducts.map((product) => (
-            <div key={product.id} className="min-w-[280px] md:min-w-[340px] snap-center shrink-0 group relative cursor-pointer">
+          {heroProducts.map((product, index) => (
+            <motion.div 
+              key={product.id}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 + (index * 0.15) }}
+              className="min-w-[280px] md:min-w-[340px] snap-center shrink-0 group relative cursor-pointer"
+            >
               
               {/* Backing Ambient Glow */}
               <div className="absolute inset-0 bg-[#FF5C00] rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-700" />
@@ -116,10 +161,10 @@ export function Hero() {
                 </div>
 
               </div>
-            </div>
+            </motion.div>
           ))}
 
-        </div>
+        </motion.div>
 
       </div>
       

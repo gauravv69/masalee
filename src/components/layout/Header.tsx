@@ -1,12 +1,18 @@
 import { ShoppingCart, Menu, Search, User } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <>
-      <header className="absolute top-0 left-0 right-0 z-50 w-full pt-4 md:pt-6 px-4 md:px-8">
+      <motion.header 
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="absolute top-0 left-0 right-0 z-50 w-full pt-4 md:pt-6 px-4 md:px-8"
+      >
         
         {/* Floating Glassmorphism Header */}
         <div className="max-w-[1600px] mx-auto bg-black/40 backdrop-blur-2xl border border-white/10 rounded-full px-4 md:px-8 py-3 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
@@ -63,7 +69,7 @@ export function Header() {
           </div>
 
         </div>
-      </header>
+      </motion.header>
 
       {/* Mobile Menu Drawer Overlay */}
       {isMobileMenuOpen && (
