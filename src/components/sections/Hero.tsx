@@ -96,74 +96,77 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Right Side: Ultimate Sexy GenZ Card Container */}
+        {/* Right Side: Ultimate Sexy GenZ Card Marquee */}
         <motion.div 
           variants={carouselVariants}
           initial="hidden"
           animate="show"
-          className="lg:col-span-7 relative w-full flex gap-6 overflow-x-auto pb-12 pt-8 snap-x snap-mandatory hide-scrollbars no-scrollbar select-none" 
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="lg:col-span-7 relative w-full overflow-hidden mt-12 lg:mt-0 pt-8 pb-12" 
         >
           
-          {/* Edge Fade */}
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-20 pointer-events-none hidden lg:block"></div>
+          {/* Edge Fades */}
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-20 pointer-events-none"></div>
 
-          {heroProducts.map((product, index) => (
-            <motion.div 
-              key={product.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 + (index * 0.15) }}
-              className="min-w-[280px] md:min-w-[340px] snap-center shrink-0 group relative cursor-pointer"
-            >
-              
-              {/* Backing Ambient Glow */}
-              <div className="absolute inset-0 bg-[#FF5C00] rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-700" />
-              
-              {/* Actual Card Body */}
-              <div className="relative h-full bg-white/[0.03] backdrop-blur-3xl rounded-[2rem] border border-white/10 overflow-hidden flex flex-col transform transition-all duration-500 group-hover:-translate-y-3 group-hover:border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+          {/* Infinite sliding container */}
+          <motion.div 
+            className="flex gap-5 w-max pl-5"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 25, ease: "linear", repeat: Infinity }}
+          >
+            {/* Duplicating the array multiple times to create a seamless infinite loop */}
+            {[...heroProducts, ...heroProducts, ...heroProducts, ...heroProducts].map((product, index) => (
+              <div 
+                key={`${product.id}-${index}`}
+                className="w-[200px] sm:w-[240px] md:w-[260px] shrink-0 group relative cursor-pointer"
+              >
                 
-                {/* Image Section */}
-                <div className="relative aspect-square w-full p-3 pb-0">
-                  {/* Neon Tag Pill */}
-                  <span className="absolute top-6 left-6 z-20 bg-black/60 backdrop-blur-xl border border-white/10 text-white px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.2em] shadow-xl">
-                    {product.tag}
-                  </span>
+                {/* Backing Ambient Glow */}
+                <div className="absolute inset-0 bg-[#FF5C00] rounded-[1.5rem] blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-700" />
+                
+                {/* Actual Card Body */}
+                <div className="relative h-full bg-white/[0.03] backdrop-blur-3xl rounded-[1.5rem] border border-white/10 overflow-hidden flex flex-col transform transition-all duration-500 hover:-translate-y-2 group-hover:border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+                  
+                  {/* Image Section */}
+                  <div className="relative aspect-square w-full p-2.5 pb-0">
+                    {/* Neon Tag Pill */}
+                    <span className="absolute top-5 left-5 z-20 bg-black/60 backdrop-blur-xl border border-white/10 text-white px-2.5 py-1 rounded-full text-[8px] font-black uppercase tracking-[0.2em] shadow-xl">
+                      {product.tag}
+                    </span>
 
-                  {/* Circular Quick Add */}
-                  <div className="absolute top-6 right-6 z-20 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                     <button className="bg-white text-black p-3 rounded-full hover:bg-[#FF5C00] hover:text-white shadow-[0_10px_20px_rgba(0,0,0,0.3)] hover:scale-110 transition-all">
-                       <ShoppingBag className="w-4 h-4" />
-                     </button>
+                    {/* Circular Quick Add */}
+                    <div className="absolute top-5 right-5 z-20 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                       <button className="bg-white text-black p-2.5 rounded-full hover:bg-[#FF5C00] hover:text-white shadow-[0_10px_20px_rgba(0,0,0,0.3)] hover:scale-110 transition-all">
+                         <ShoppingBag className="w-3.5 h-3.5" />
+                       </button>
+                    </div>
+
+                    {/* Image Element */}
+                    <div className="w-full h-full rounded-2xl overflow-hidden bg-black/50 relative">
+                      <img 
+                        src={product.image} 
+                        alt={product.name} 
+                        className="w-full h-full object-cover object-center transform scale-100 group-hover:scale-110 transition-transform duration-1000 ease-out brightness-90 group-hover:brightness-110 contrast-125"
+                      />
+                    </div>
                   </div>
 
-                  {/* Image Element */}
-                  <div className="w-full h-full rounded-[1.5rem] overflow-hidden bg-black/50 relative">
-                    <img 
-                      src={product.image} 
-                      alt={product.name} 
-                      className="w-full h-full object-cover object-center transform scale-100 group-hover:scale-110 transition-transform duration-1000 ease-out brightness-90 group-hover:brightness-110 contrast-125"
-                    />
+                  {/* Content Section */}
+                  <div className="p-5 flex flex-col justify-end flex-grow">
+                    <h3 className="text-white/90 font-semibold text-sm md:text-base leading-tight mb-2 line-clamp-2">
+                      {product.name}
+                    </h3>
+                    <div className="flex items-center justify-between mt-auto">
+                      <p className="text-[#FF5C00] font-mono text-[11px] md:text-xs tracking-tight font-bold">
+                        {product.price}
+                      </p>
+                      <div className="w-4 h-[2px] bg-white/20 group-hover:bg-[#FF5C00] group-hover:w-8 transition-all duration-500 rounded-full" />
+                    </div>
                   </div>
+
                 </div>
-
-                {/* Content Section */}
-                <div className="p-6 pt-5 flex flex-col justify-end flex-grow">
-                  <h3 className="text-white/90 font-semibold text-lg leading-tight mb-3 line-clamp-2">
-                    {product.name}
-                  </h3>
-                  <div className="flex items-center justify-between">
-                    <p className="text-[#FF5C00] font-mono text-[13px] tracking-tight font-bold">
-                      {product.price}
-                    </p>
-                    <div className="w-6 h-[2px] bg-white/20 group-hover:bg-[#FF5C00] group-hover:w-10 transition-all duration-500 rounded-full" />
-                  </div>
-                </div>
-
               </div>
-            </motion.div>
-          ))}
-
+            ))}
+          </motion.div>
         </motion.div>
 
       </div>
