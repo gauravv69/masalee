@@ -1,4 +1,5 @@
 import { Flame, ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function Footer() {
   return (
@@ -42,7 +43,7 @@ export function Footer() {
             <div>
               <h4 className="font-bold mb-6 tracking-widest uppercase text-xs text-white/90">About</h4>
               <ul className="space-y-4 text-white/50 text-sm">
-                <li><a href="#" className="group flex items-center hover:text-white transition-colors"><span className="border-b border-transparent group-hover:border-amber-500 pb-0.5 transition-colors">Our Story</span> <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 -translate-x-2 translate-y-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 text-amber-500 transition-all duration-300" /></a></li>
+                <li><Link to="/about" className="group flex items-center hover:text-white transition-colors"><span className="border-b border-transparent group-hover:border-amber-500 pb-0.5 transition-colors">Our Story</span> <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 -translate-x-2 translate-y-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 text-amber-500 transition-all duration-300" /></Link></li>
                 <li><a href="#" className="group flex items-center hover:text-white transition-colors"><span className="border-b border-transparent group-hover:border-amber-500 pb-0.5 transition-colors">Sourcing</span> <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 -translate-x-2 translate-y-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 text-amber-500 transition-all duration-300" /></a></li>
                 <li><a href="#" className="group flex items-center hover:text-white transition-colors"><span className="border-b border-transparent group-hover:border-amber-500 pb-0.5 transition-colors">Sustainability</span> <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 -translate-x-2 translate-y-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 text-amber-500 transition-all duration-300" /></a></li>
               </ul>
@@ -50,9 +51,9 @@ export function Footer() {
 
             {/* Contact */}
             <div>
-              <h4 className="font-bold mb-6 tracking-widest uppercase text-xs text-white/90">Contact</h4>
+              <h4 className="font-bold mb-6 tracking-widest uppercase text-xs text-white/90">Questions</h4>
               <ul className="space-y-4 text-white/50 text-sm">
-                <li><a href="#" className="group flex items-center hover:text-white transition-colors"><span className="border-b border-transparent group-hover:border-white pb-0.5 transition-colors">Support</span> <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 -translate-x-2 translate-y-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 text-white transition-all duration-300" /></a></li>
+                <li><Link to="/contact" className="group flex items-center hover:text-white transition-colors"><span className="border-b border-transparent group-hover:border-amber-500 pb-0.5 transition-colors">Help & Support</span> <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 -translate-x-2 translate-y-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 text-amber-500 transition-all duration-300" /></Link></li>
                 <li><a href="#" className="group flex items-center hover:text-white transition-colors"><span className="border-b border-transparent group-hover:border-white pb-0.5 transition-colors">Wholesale</span> <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 -translate-x-2 translate-y-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 text-white transition-all duration-300" /></a></li>
                 <li><a href="#" className="group flex items-center hover:text-white transition-colors"><span className="border-b border-transparent group-hover:border-white pb-0.5 transition-colors">FAQs</span> <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 -translate-x-2 translate-y-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 text-white transition-all duration-300" /></a></li>
               </ul>
